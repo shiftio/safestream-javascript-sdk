@@ -18,7 +18,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
     return {
         getVideos: async () => {
 
-            await axios.get(
+            const response = await axios.get(
                 `${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, 
                 { 
                     headers: {
@@ -27,12 +27,6 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                     }
                 }
             )
-            .then(function (response) {
-                // handle success
-                console.log(response.data);
-
-                // return response.data
-            })
             .catch(function (error) {
                 // handle error
                 console.log(error);
@@ -41,7 +35,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                 // console.log("DONE")
             });
 
-            return [{ bam: "bazzle" }]
+            return response.data
         }
     }
 }
