@@ -28,7 +28,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
             )
             .then(function (response) {
                 // handle success
-                console.log(response);
+                // console.log(response);
 
                 return response.data
             })
@@ -37,7 +37,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                 console.log(error);
             })
             .then(function () {
-                console.log("DONE")
+                // console.log("DONE")
             });
         }
     }
