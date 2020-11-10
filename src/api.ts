@@ -18,29 +18,30 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
     return {
         getVideos: async () => {
 
-            return [{ bam: "bazzle" }]
-            // return await axios.get(
-            //     `${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, 
-            //     { 
-            //         headers: {
-            //             'x-api-key': config.auth.apiKey,
-            //             'x-api-secret': config.auth.apiSecret
-            //         }
-            //     }
-            // )
-            // .then(function (response) {
-            //     // handle success
-            //     // console.log(response);
+            await axios.get(
+                `${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, 
+                { 
+                    headers: {
+                        'x-api-key': config.auth.apiKey,
+                        'x-api-secret': config.auth.apiSecret
+                    }
+                }
+            )
+            .then(function (response) {
+                // handle success
+                console.log(response.data);
 
-            //     return response.data
-            // })
-            // .catch(function (error) {
-            //     // handle error
-            //     console.log(error);
-            // })
-            // .then(function () {
-            //     // console.log("DONE")
-            // });
+                // return response.data
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // console.log("DONE")
+            });
+
+            return [{ bam: "bazzle" }]
         }
     }
 }
