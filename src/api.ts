@@ -17,18 +17,20 @@ const API_VIDEOS_PATH = "/videos"
 export const SafeStream = (config: SafeStreamSDKConfig) => {
     return {
         getVideos: async () => {
-            const videos = await axios.get(
+            return await axios.get(
                 `${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, 
                 { 
                     headers: {
                         'x-api-key': config.auth.apiKey,
-                        'x-api-secret': config.auth.apiKey
+                        'x-api-secret': config.auth.apiSecret
                     }
                 }
             )
             .then(function (response) {
                 // handle success
                 console.log(response);
+
+                return response.data
             })
             .catch(function (error) {
                 // handle error
@@ -37,8 +39,6 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
             .then(function () {
                 console.log("DONE")
             });
-             
-            return videos;
         }
     }
 }
