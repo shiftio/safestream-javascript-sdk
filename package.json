@@ -1,6 +1,6 @@
 {
   "name": "@safestream/safestream-javascript-sdk",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Javascript SDK for SafeStream in the browser and for NodeJS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
