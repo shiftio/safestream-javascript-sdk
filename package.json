@@ -1,0 +1,16 @@
+{
+  "name": "@safestream/safestream-javascript-sdk",
+  "version": "0.1.0",
+  "description": "Javascript SDK for SafeStream in the browser and for NodeJS",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "Mike Delano",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
