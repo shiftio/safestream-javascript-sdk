@@ -32,7 +32,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
         getTemplates: () => 
             axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_TEMPLATES_PATH}/`, { headers: AUTH_HEADERS })
                 .then(({ data }) => data),
-        getStream: (videoId: string, templateId: string, mappings: object) => {
+        getStream: async (videoId: string, templateId: string, mappings: object) => {
             if(isBrowser()) {
                 console.error("It's common to create streams in the browser during development. However, streams should be created server side in proiduction. Creating streams in the browser in production is insecure. See https://docs.safestream.com.")
             }
@@ -44,7 +44,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                 }
             }
 
-            return axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_WATERMARK_PATH}/`, { headers: AUTH_HEADERS })
+            return axios.post(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_WATERMARK_PATH}/`, payload, { headers: AUTH_HEADERS })
                 .then(({ data }) => data)
         }
     }
