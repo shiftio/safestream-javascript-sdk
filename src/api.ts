@@ -34,7 +34,7 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                 .then(({ data }) => data),
         getStream: async (videoId: string, templateId: string, mappings: object) => {
             if(isBrowser()) {
-                console.error("It's common to create streams in the browser during development. However, streams should be created server side in production. Creating streams in the browser in production is insecure. See https://docs.safestream.com.")
+                console.warn(new Error("You are currently running in test mode!!!! It's common to create streams in the browser during development. However, streams should be created server side in production. Creating streams in the browser in production is insecure. See https://docs.safestream.com."))
             }
             const payload = {
                 videoId: videoId,
