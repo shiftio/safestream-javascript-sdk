@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
-    "axios": "^0.21.0"
+    "@types/regenerator-runtime": "^0.13.0",
+    "axios": "^0.21.0",
+    "regenerator-runtime": "^0.13.7"
   }
 }
