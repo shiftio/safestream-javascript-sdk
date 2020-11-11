@@ -23,19 +23,16 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
         'x-api-secret': config.auth.apiSecret
     }
     return {
-        getVideos: async () => {
-            const response = await axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, { headers: AUTH_HEADERS })
-            return response.data
-        },
-        getVideo: async (id: string) => {
-            const response = await axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}/${id}`, { headers: AUTH_HEADERS })
-            return response.data
-        },
-        getTemplates: async () => {
-            const response = await axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_TEMPLATES_PATH}/`, { headers: AUTH_HEADERS })
-            return response.data
-        },
-        getStream: async (videoId: string, templateId: string, mappings: object) => {
+        getVideos: () => 
+            axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}`, { headers: AUTH_HEADERS })
+                .then(({ data }) => data),
+        getVideo: (id: string) => 
+            axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_VIDEOS_PATH}/${id}`, { headers: AUTH_HEADERS })
+                .then(({ data }) => data),
+        getTemplates: () => 
+            axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_TEMPLATES_PATH}/`, { headers: AUTH_HEADERS })
+                .then(({ data }) => data),
+        getStream: (videoId: string, templateId: string, mappings: object) => {
             if(isBrowser()) {
                 console.error("It's common to create streams in the browser during development. However, streams should be created server side in proiduction. Creating streams in the browser in production is insecure. See https://docs.safestream.com.")
             }
@@ -46,8 +43,9 @@ export const SafeStream = (config: SafeStreamSDKConfig) => {
                     mappings: mappings
                 }
             }
-            const response = await axios.post(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_WATERMARK_PATH}/`, payload, { headers: AUTH_HEADERS })
-            return response.data
+
+            return axios.get(`${API_PROTOCOL}://${API_DOMAIN}/${API_VERSION}${API_WATERMARK_PATH}/`, { headers: AUTH_HEADERS })
+                .then(({ data }) => data)
         }
     }
 }
